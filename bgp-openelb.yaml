@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bgp-openelb
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: bgp-openelb
+  template:
+    metadata:
+      labels:
+        app: bgp-openelb
+    spec:
+      containers:
+        - image: anurag199/flask-one:v1.0
+          imagePullPolicy: IfNotPresent
+          name: kubia
+          ports:
+            - containerPort: 8080
